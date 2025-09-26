@@ -1,0 +1,40 @@
+{
+	"dependencies": {
+		"@playwright/test": "^1.55.1",
+		"@react-three/drei": "^10.7.6",
+		"@react-three/fiber": "^9.3.0",
+		"@testing-library/jest-dom": "^6.8.0",
+		"@testing-library/react": "^16.3.0",
+		"@types/three": "^0.180.0",
+		"@vitest/ui": "^3.2.4",
+		"framer-motion": "^12.23.22",
+		"jsdom": "^27.0.0",
+		"next": "^15.0.0-rc.0",
+		"next-themes": "^0.4.6",
+		"playwright": "^1.55.1",
+		"r3f-perf": "^7.2.3",
+		"react": "^19.0.0-rc.0",
+		"react-dom": "^19.0.0-rc.0",
+		"three": "^0.180.0",
+		"vitest": "^3.2.4"
+	},
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"test": "vitest",
+		"e2e": "playwright test"
+	},
+	"devDependencies": {
+		"@types/node": "^24.5.2",
+		"@types/react": "^19.1.13",
+		"@types/react-dom": "^19.1.9",
+		"autoprefixer": "^10.4.21",
+		"eslint": "^9.36.0",
+		"eslint-config-next": "15.5.4",
+		"postcss": "^8.5.6",
+		"tailwindcss": "^4.1.13",
+		"typescript": "5.9.2"
+	}
+}

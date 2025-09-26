@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "name": "Rock Concert in Berlin",
+    "url": "#",
+    "images": [{ "url": "https://picsum.photos/seed/event1/600/400" }],
+    "dates": { "start": { "localDate": "2025-10-15", "localTime": "20:00:00" } },
+    "priceRanges": [{ "currency": "EUR", "min": 50, "max": 150 }],
+    "_embedded": { "venues": [{ "name": "Mercedes-Benz Arena", "city": { "name": "Berlin" } }] }
+  },
+  {
+    "id": "2",
+    "name": "Classical Music Night",
+    "url": "#",
+    "images": [{ "url": "https://picsum.photos/seed/event2/600/400" }],
+    "dates": { "start": { "localDate": "2025-10-20", "localTime": "19:30:00" } },
+    "priceRanges": [{ "currency": "EUR", "min": 40, "max": 120 }],
+    "_embedded": { "venues": [{ "name": "Berliner Philharmonie", "city": { "name": "Berlin" } }] }
+  },
+  {
+    "id": "3",
+    "name": "FC Bayern vs. Borussia Dortmund",
+    "url": "#",
+    "images": [{ "url": "https://picsum.photos/seed/event3/600/400" }],
+    "dates": { "start": { "localDate": "2025-11-01", "localTime": "15:30:00" } },
+    "priceRanges": [{ "currency": "EUR", "min": 80, "max": 300 }],
+    "_embedded": { "venues": [{ "name": "Allianz Arena", "city": { "name": "Munich" } }] }
+  }
+]
