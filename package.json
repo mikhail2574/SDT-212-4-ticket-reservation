@@ -22,6 +22,7 @@
     "@playwright/test": "^1.55.1",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
+    "@tailwindcss/postcss": "^4.1.13",
     "@types/three": "^0.180.0",
     "@vitest/ui": "^3.2.4",
     "@types/node": "^24.5.2",
