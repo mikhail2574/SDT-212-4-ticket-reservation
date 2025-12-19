@@ -1,0 +1,90 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --bg: #f6f1e8;
+    --fg: #1c1914;
+    --muted: #5b5247;
+    --card: #fffaf1;
+    --border: #e6dccd;
+    --accent: #0f766e;
+    --accent-strong: #0b5d56;
+    --accent-2: #f97316;
+    --shadow: 0 32px 70px -55px rgba(14, 12, 10, 0.7);
+  }
+
+  .dark {
+    color-scheme: dark;
+    --bg: #0c1111;
+    --fg: #f5efe6;
+    --muted: #b1a799;
+    --card: #151c1c;
+    --border: #263030;
+    --accent: #1fa39a;
+    --accent-strong: #187a73;
+    --accent-2: #fb923c;
+    --shadow: 0 28px 70px -45px rgba(0, 0, 0, 0.9);
+  }
+
+  * {
+    border-color: var(--border);
+  }
+
+  body {
+    min-height: 100%;
+    font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+    background:
+      radial-gradient(circle at top left, rgba(15, 118, 110, 0.15), transparent 45%),
+      radial-gradient(circle at 20% 30%, rgba(249, 115, 22, 0.12), transparent 40%),
+      linear-gradient(180deg, var(--bg), var(--bg));
+    color: var(--fg);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display), ui-serif, Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.6s ease-out both;
+  }
+
+  .animate-glow {
+    animation: glow 3.5s ease-in-out infinite;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(15, 118, 110, 0.25);
+  }
+  50% {
+    box-shadow: 0 20px 60px -30px rgba(15, 118, 110, 0.45);
+  }
+}

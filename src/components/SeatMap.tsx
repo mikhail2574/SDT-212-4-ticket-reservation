@@ -5,9 +5,9 @@ import { Seat } from '@/lib/types';
 import { useEffect, useState } from 'react';
 
 const seatStatusColors = {
-  available: 'text-green-500',
-  selected: 'text-blue-500',
-  reserved: 'text-red-500',
+  available: 'fill-emerald-500',
+  selected: 'fill-[var(--accent)]',
+  reserved: 'fill-rose-500',
 };
 
 export default function SeatMap({ eventId, onSelectionChange }: { eventId: string; onSelectionChange?: (seats: Seat[]) => void }) {
@@ -37,7 +37,7 @@ export default function SeatMap({ eventId, onSelectionChange }: { eventId: strin
   };
 
   return (
-    <div className="w-full h-96 overflow-auto border rounded-lg bg-gray-50 dark:bg-gray-900">
+    <div className="w-full h-96 overflow-auto rounded-2xl border border-[var(--border)] bg-[var(--bg)]">
       <svg width="2000" height="1000" viewBox="0 0 2000 1000" role="group" aria-label="Seat map">
         {seats.map(seat => {
           const selected = selectedSeats.has(seat.id);

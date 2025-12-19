@@ -13,9 +13,9 @@ export default function Hero3D() {
     const on = process.env.NEXT_PUBLIC_ENABLE_3D === 'true' && isWebGLAvailable() && !prefersReducedMotion();
     setEnabled(on);
   }, []);
-  if (!enabled) return <div className="h-64 rounded-2xl bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900" />;
+  if (!enabled) return <div className="h-64 rounded-2xl border border-[var(--border)] bg-[var(--card)] shadow-[var(--shadow)]" />;
   return (
-    <div className="h-64 rounded-2xl overflow-hidden">
+    <div className="h-64 rounded-2xl overflow-hidden border border-[var(--border)] shadow-[var(--shadow)]">
       <ThreeStage>
         <HeroTicket />
       </ThreeStage>

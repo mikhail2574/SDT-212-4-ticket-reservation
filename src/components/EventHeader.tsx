@@ -1,3 +1,5 @@
+'use client';
+
 import FavoriteButton from '@/components/FavoriteButton';
 import Link from 'next/link';
 
@@ -23,7 +25,7 @@ export default function EventHeader({ event }: EventHeaderProps) {
   async function shareEvent(e: EventHeaderProps['event']) {
     const shareData = {
       title: e.name,
-      text: `${e.name} — ${e.date ?? ''} ${e.venueName ?? ''}`.trim(),
+      text: `${e.name} - ${e.date ?? ''} ${e.venueName ?? ''}`.trim(),
       url: typeof window !== 'undefined' ? window.location.href : undefined,
     } as ShareData;
     try {
@@ -37,24 +39,32 @@ export default function EventHeader({ event }: EventHeaderProps) {
     }
   }
   return (
-    <header>
-      <h1 className="text-4xl font-bold">{event.name}</h1>
-      <div className="flex gap-4 mt-2 text-lg text-gray-600 dark:text-gray-400">
-        <span>{event.date}</span>
-        <span>{event.venueName}</span>
+    <header className="rounded-3xl border border-[var(--border)] bg-[var(--card)] p-6 shadow-[var(--shadow)]">
+      <p className="text-xs font-semibold uppercase tracking-[0.4em] text-[var(--muted)]">Event briefing</p>
+      <h1 className="mt-2 text-4xl md:text-5xl">{event.name}</h1>
+      <div className="mt-3 flex flex-wrap gap-4 text-sm text-[var(--muted)]">
+        <span>{event.date || 'Date TBA'}</span>
+        <span>{event.venueName || 'Venue TBA'}</span>
+        <span>{event.cityName || 'City TBA'}</span>
       </div>
-      <div className="mt-4 flex flex-wrap gap-2 items-center">
-        <a href={event.url} target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
-          Buy on Ticketmaster
-        </a>
+      <div className="mt-5 flex flex-wrap gap-3 items-center">
+        {event.url ? (
+          <a href={event.url} target="_blank" rel="noopener noreferrer" className="rounded-xl bg-[var(--accent)] px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[var(--accent-strong)]">
+            Buy on Ticketmaster
+          </a>
+        ) : (
+          <span className="rounded-xl border border-[var(--border)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-[var(--muted)]">
+            Ticket Link Pending
+          </span>
+        )}
         <Link
           href={`/api/ics?id=${encodeURIComponent(event.id)}&title=${encodeURIComponent(event.name)}&start=${encodeURIComponent(toISO(event.date, event.time))}&location=${encodeURIComponent(event.venueName ?? '')}&url=${encodeURIComponent(event.url ?? '')}`}
-          className="px-4 py-2 bg-emerald-500 text-white rounded-md hover:bg-emerald-600"
+          className="rounded-xl border border-[var(--border)] bg-transparent px-4 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--fg)] transition hover:bg-[var(--fg)] hover:text-[var(--bg)]"
         >
           Add to Calendar
         </Link>
         <button
-          className="px-3 py-2 bg-gray-200 dark:bg-gray-700 rounded-md"
+          className="rounded-xl border border-[var(--border)] px-3 py-2 text-sm text-[var(--muted)] transition hover:text-[var(--fg)]"
           onClick={() => shareEvent(event)}
         >
           Share

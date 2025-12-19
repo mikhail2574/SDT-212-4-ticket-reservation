@@ -15,14 +15,14 @@ export default function FavoriteButton({ event }: { event: Favorite }) {
       type="button"
       aria-pressed={fav}
       aria-label={fav ? 'Remove from favorites' : 'Add to favorites'}
-      className={`text-xl leading-none ${fav ? 'text-yellow-500' : 'text-gray-400 hover:text-gray-600'} `}
+      className={`rounded-full border border-[var(--border)] px-2 py-1 text-sm ${fav ? 'text-[var(--accent-2)]' : 'text-[var(--muted)] hover:text-[var(--fg)]'} `}
       onClick={(e) => {
         e.preventDefault();
         const nowFav = toggleFavorite(event);
         setFav(nowFav);
       }}
     >
-      {fav ? '★' : '☆'}
+      {fav ? 'Saved' : 'Save'}
     </button>
   );
 }

@@ -39,17 +39,17 @@ export default function TicketsSection({ eventId }: { eventId: string }) {
   }, [eventId, selected]);
 
   return (
-    <div className="mt-6 flex flex-col md:flex-row gap-6">
+    <div className="mt-6 flex flex-col gap-6 md:flex-row">
       <div className="flex-1 min-w-0">
         <SeatMap eventId={eventId} onSelectionChange={onSelectionChange} />
       </div>
       <div className="w-full md:w-80 shrink-0">
         <CartSidebar eventId={eventId} selectedSeats={selected} onReserve={onReserve} />
         {reservationId ? (
-          <p className="mt-2 text-sm text-green-600">Reservation: {reservationId}</p>
+          <p className="mt-2 text-sm text-[var(--accent)]">Reservation: {reservationId}</p>
         ) : null}
-        {loading ? <p className="mt-2 text-sm">Processing…</p> : null}
-        <p className="mt-2 text-xs opacity-80">Selected seats: {selected.length} • Total €{total.toFixed(2)}</p>
+        {loading ? <p className="mt-2 text-sm text-[var(--muted)]">Processing...</p> : null}
+        <p className="mt-2 text-xs text-[var(--muted)]">Selected seats: {selected.length} • Total €{total.toFixed(2)}</p>
       </div>
     </div>
   );
