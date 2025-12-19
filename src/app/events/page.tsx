@@ -15,8 +15,12 @@ async function EventsList({ city }: { city: string }) {
   );
 }
 
-export default async function Page({ searchParams }: { searchParams?: { city?: string } }) {
-  const city = searchParams?.city ?? 'Berlin'; // Default to Berlin if no city is provided
+export default async function Page({
+  searchParams,
+}: {
+  searchParams?: Promise<{ city?: string }>;
+}) {
+  const city = (await searchParams)?.city ?? 'Berlin'; // Default to Berlin if no city is provided
 
   return (
     <main className="p-8">
