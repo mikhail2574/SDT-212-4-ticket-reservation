@@ -1,79 +1,71 @@
 # City Events Finder
 
-This is a Next.js application that allows users to search for events in a city and view the details of the events. The application uses the Ticketmaster Discovery API to fetch the events.
+A Next.js app for discovering Ticketmaster events by city, viewing event details, and simulating reservations with seat selection.
+
+## Overview
+
+City Events Finder lets users search by city, browse event cards, and open event detail pages with images, venue info, and a demo reservation flow. The app supports mock data for local development when API access is unavailable.
 
 ## Features
 
-- Search for events by city and date
-- View the details of an event
-- View the seat map of an event
-- Reserve a seat for an event
-- Add an event to the calendar
-- Share an event with others
-- View the venue of an event on a map
-- Light and dark theme
-- 3D hero section
-- 3D seat map
-- Confetti animation on successful reservation
+- City search with event cards and detail pages
+- Ticketmaster Discovery API integration (mocked fallback supported)
+- Seat selection and reservation demo flow
+- Favorites and calendar export (ICS)
+- Optional 3D hero and seat map visuals
+- Light/dark theme toggle
 
-## Technologies
+## Tech Stack
 
-- Next.js
+- Next.js (App Router)
 - TypeScript
 - Tailwind CSS
 - React Three Fiber
 - Framer Motion
-- Vitest
-- Playwright
+- Vitest + Playwright
 
-## Getting Started
+## Project Structure
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `src/app/` pages, layouts, and API routes
+- `src/components/` UI and interactive components
+- `src/lib/` API client, types, mocks, utilities
+- `src/lib/mocks/` local mock event data
 
 ## Environment Variables
 
-Create a `.env.local` file for local development:
+Create a `.env` file in the project root:
 
 ```bash
-TM_API_KEY=your_ticketmaster_key
-USE_MOCKS=true
+TM_API_KEY=your_ticketmaster_consumer_key
+USE_MOCKS=false
 NEXT_PUBLIC_ENABLE_3D=true
 NEXT_PUBLIC_ENABLE_PARTICLES=true
 ```
 
-- `TM_API_KEY` is required in production unless `USE_MOCKS=true`.
-- `USE_MOCKS=true` lets the app run without a Ticketmaster key during local development.
-- `NEXT_PUBLIC_ENABLE_3D` and `NEXT_PUBLIC_ENABLE_PARTICLES` toggle optional visuals.
+Notes:
+- `TM_API_KEY` should be the Ticketmaster Consumer Key (Discovery API).
+- Set `USE_MOCKS=true` to run without a key.
 
-## Learn More
+## Run Locally
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm install
+pnpm dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Open `http://localhost:3000`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Tests
 
-## Deploy on Vercel
+```bash
+pnpm test
+pnpm test:e2e
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Reflection
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project focused on building a polished, user-friendly event discovery flow while keeping the data layer simple and flexible. The Ticketmaster Discovery API provides rich event data but requires careful handling of missing fields, inconsistent image hosts, and rate limits, which influenced the API wrapper and UI fallbacks.
 
-When configuring the project on Vercel, add `TM_API_KEY` (and any other optional flags) to the Environment Variables section.
+Using mock data was critical for fast iteration and enabled consistent UI development even when API access was unavailable. The separation of API mapping in `src/lib/tm.ts` helped keep UI components clean and stable as data shapes evolved.
+
+The main tradeoff is that client-side experiences (favorites, theming, and some 3D visuals) can introduce hydration or runtime edge cases in Next.js, so more robust guards and error boundaries would be valuable in future iterations. If the project were extended, the next steps would be: caching API responses, adding pagination for large result sets, and implementing a proper reservation backend.

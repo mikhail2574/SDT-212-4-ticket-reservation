@@ -8,6 +8,10 @@ const nextConfig = {
       { protocol: 'https', hostname: 's1.ticketm.net' },
       { protocol: 'https', hostname: 'ticketm.net' },
       { protocol: 'https', hostname: '**.ticketm.net' },
+      { protocol: 'https', hostname: 'ticketmaster.com' },
+      { protocol: 'https', hostname: '**.ticketmaster.com' },
+      { protocol: 'https', hostname: 'ticketmaster.eu' },
+      { protocol: 'https', hostname: '**.ticketmaster.eu' },
     ],
   },
 };

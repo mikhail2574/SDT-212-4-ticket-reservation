@@ -13,11 +13,29 @@ type EventCardProps = {
 };
 
 export default function EventCard({ event }: EventCardProps) {
+  const safeImageSrc = (() => {
+    if (!event.imageUrl) return '/placeholder.svg';
+    try {
+      const url = new URL(event.imageUrl);
+      const host = url.hostname;
+      const isAllowedHost =
+        host === 'picsum.photos' ||
+        host.endsWith('ticketm.net') ||
+        host.endsWith('ticketmaster.com') ||
+        host.endsWith('ticketmaster.eu');
+      if (!isAllowedHost) return '/placeholder.svg';
+      if (url.protocol === 'http:') url.protocol = 'https:';
+      return url.toString();
+    } catch {
+      return '/placeholder.svg';
+    }
+  })();
+
   return (
     <Link href={`/events/${event.id}`} className="group block overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--card)] shadow-[var(--shadow)] transition hover:-translate-y-1">
       <div className="relative h-48 overflow-hidden">
         <Image
-          src={event.imageUrl || '/placeholder.svg'}
+          src={safeImageSrc}
           alt={event.name}
           fill
           className="object-cover transition duration-500 group-hover:scale-105"
