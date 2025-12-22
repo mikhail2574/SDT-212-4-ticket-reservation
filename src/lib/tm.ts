@@ -8,7 +8,7 @@ const HARDCODED_KEY =
     ? ""
     : HARDCODED_TICKETMASTER_KEY;
 const API_KEY = process.env.TM_API_KEY || HARDCODED_KEY;
-const USE_MOCKS = true;
+const USE_MOCKS = false;
 
 // A simple fetch wrapper with error handling and exponential backoff
 async function fetchWithBackoff(
