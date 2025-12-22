@@ -1,7 +1,11 @@
 import { TmEvent } from './types';
 
 const API_BASE = 'https://app.ticketmaster.com/discovery/v2';
-const API_KEY = process.env.TM_API_KEY;
+// Fallback hardcoded key for local testing; prefer env vars for real deployments.
+const HARDCODED_TICKETMASTER_KEY = 'REPLACE_WITH_TICKETMASTER_KEY';
+const HARDCODED_KEY =
+  HARDCODED_TICKETMASTER_KEY === 'REPLACE_WITH_TICKETMASTER_KEY' ? '' : HARDCODED_TICKETMASTER_KEY;
+const API_KEY = process.env.TM_API_KEY || HARDCODED_KEY;
 const isProd = process.env.NODE_ENV === 'production';
 const USE_MOCKS = process.env.USE_MOCKS === 'true' || (!API_KEY && !isProd);
 
@@ -60,7 +64,10 @@ export async function getEventDetails(id: string): Promise<TmEvent | null> {
       const mockData = await import(`@/lib/mocks/event-${id}.json`);
       return mockData.default as TmEvent;
     } catch {
-      return null;
+      // Fallback to the list mock if a per-id mock file is missing.
+      const listMock = await import('@/lib/mocks/events.json');
+      const match = (listMock.default as TmEvent[]).find(event => event.id === id);
+      return match ?? null;
     }
   }
   if (!API_KEY) {
